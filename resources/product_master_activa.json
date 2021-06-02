@@ -1,0 +1,338 @@
+[
+    {
+        "name": "ACTIVA",
+        "brand": "Adalipca",
+        "productname": "Adalipca 40mg/0.8ml Inj 1s",
+        "productcode": "IIJ01",
+        "unit_price": 7785.69
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Apraize",
+        "productname": "Apraize 30mg Tabs 10s",
+        "productcode": "INX01",
+        "unit_price": 160.72
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Apraize",
+        "productname": "Apraize 10mg Tabs 4s",
+        "productcode": "ITP01",
+        "unit_price": 38.57
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Apraize",
+        "productname": "Apraize 20mg Tabs 4s",
+        "productcode": "ITQ01",
+        "unit_price": 51.43
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "AZR",
+        "productname": "AZR 50mg Tabs 10s",
+        "productcode": "IBZ01",
+        "unit_price": 71.5
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Calten D",
+        "productname": "Calten D 500mg Tabs 15s",
+        "productcode": "FVX01",
+        "unit_price": 53.28
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Donica",
+        "productname": "Donica Caps 10s",
+        "productcode": "BRQ01",
+        "unit_price": 25.46
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Donica",
+        "productname": "Donica SR Caps 10s",
+        "productcode": "BRR01",
+        "unit_price": 55.16
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Ebuxo",
+        "productname": "Ebuxo-40 Tablets 10s",
+        "productcode": "EGC01",
+        "unit_price": 65.65
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Ebuxo",
+        "productname": "Ebuxo 80mg Tabs 10s",
+        "productcode": "EGD01",
+        "unit_price": 118.93
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Etova",
+        "productname": "Etova 200mg Tabs 10s",
+        "productcode": "CEO01",
+        "unit_price": 32.66
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Etova",
+        "productname": "Etova 400mg Tabs 10s",
+        "productcode": "CEQ01",
+        "unit_price": 46.67
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Etova",
+        "productname": "Etova 300mg Tabs 10s",
+        "productcode": "CER01",
+        "unit_price": 44.33
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Etova ER",
+        "productname": "Etova ER 600mg Tabs 10s",
+        "productcode": "CMM02",
+        "unit_price": 103.44
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Etova ER",
+        "productname": "Etova ER 400mg Tabs 10s",
+        "productcode": "CPJ01",
+        "unit_price": 72.0
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Etova MR",
+        "productname": "Etova MR 400/4mg Tabs 10s",
+        "productcode": "EGG01",
+        "unit_price": 126.84
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Etova MR",
+        "productname": "Etova MR Forte Tabs 10s",
+        "productcode": "FXM01",
+        "unit_price": 166.56
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax Inj",
+        "productname": "Folitrax 15mg Inj 1ml",
+        "productcode": "AYP01",
+        "unit_price": 36.39
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax Inj",
+        "productname": "Folitrax 50mg Inj 2ml",
+        "productcode": "BFL01",
+        "unit_price": 67.78
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax Inj",
+        "productname": "Folitrax 20 inj 1ml",
+        "productcode": "FVV01",
+        "unit_price": 59.08
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax Inj",
+        "productname": "Folitrax 7.5mg/ml Inj 1ml",
+        "productcode": "CYA01",
+        "unit_price": 23.75
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax Inj",
+        "productname": "Folitrax 25 Inj 1ml",
+        "productcode": "FVW01",
+        "unit_price": 33.89
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax LD",
+        "productname": "Folitrax 5mg Tabs 10s",
+        "productcode": "APZ01",
+        "unit_price": 59.04
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax LD",
+        "productname": "Folitrax 2.5mg Tabs 10s",
+        "productcode": "APY01",
+        "unit_price": 33.7
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax OD",
+        "productname": "Folitrax 25mg Tabs 4s",
+        "productcode": "FRU01",
+        "unit_price": 144.0
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax OD",
+        "productname": "Folitrax 15mg Tabs 10s",
+        "productcode": "CWZ01",
+        "unit_price": 219.84
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax OD",
+        "productname": "Folitrax 20mg Tabs 4s",
+        "productcode": "FRT01",
+        "unit_price": 107.66
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax SD",
+        "productname": "Folitrax 7.5mg Tabs 10s",
+        "productcode": "AQA01",
+        "unit_price": 81.64
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Folitrax SD",
+        "productname": "Folitrax 10mg Tabs 10s",
+        "productcode": "AYG01",
+        "unit_price": 85.54
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "HCQS",
+        "productname": "HCQS 300mg Tabs 10s",
+        "productcode": "FUA02",
+        "unit_price": 89.42
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "HCQS",
+        "productname": "HCQS 200mg Tabs 10s",
+        "productcode": "LW01",
+        "unit_price": 63.81
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "HCQS",
+        "productname": "HCQS 400mg Tabs 10s",
+        "productcode": "CLG01",
+        "unit_price": 84.18
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "HCQS",
+        "productname": "HCQS 200mg Tabs 15s",
+        "productcode": "GPD06",
+        "unit_price": 62.64
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Igurati",
+        "productname": "Igurati 25mg Tabs 10s",
+        "productcode": "JEU01",
+        "unit_price": 138.21
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Ipca MMF",
+        "productname": "MMF-S Tabs 10s",
+        "productcode": "FOJ02",
+        "unit_price": 411.43
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Ipca MMF",
+        "productname": "MMF Tabs 10s",
+        "productcode": "CGJ01",
+        "unit_price": 448.25
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Lefno",
+        "productname": "Lefno 10mg Tabs 10s",
+        "productcode": "BJH01",
+        "unit_price": 70.56
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Lefno",
+        "productname": "Lefno 20mg Tabs 10s",
+        "productcode": "BJG01",
+        "unit_price": 137.66
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Rituxipca",
+        "productname": "Rituxipca 500mg Inj 500mg",
+        "productcode": "IOH01",
+        "unit_price": 9863.33
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Saaz",
+        "productname": "Saaz DS Tabs 10s",
+        "productcode": "ANZ01",
+        "unit_price": 74.29
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Saaz",
+        "productname": "Saaz Tabs 10s",
+        "productcode": "ANY01",
+        "unit_price": 35.19
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Tacva",
+        "productname": "Tacva 1mg Caps 10s",
+        "productcode": "ION01",
+        "unit_price": 275.26
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Tacva",
+        "productname": "Tacva 2mg Caps 10s",
+        "productcode": "IOO01",
+        "unit_price": 539.22
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Tacva",
+        "productname": "Tacva 0.5mg Caps 10s",
+        "productcode": "IOM01",
+        "unit_price": 155.82
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Tadact Range",
+        "productname": "Tadact 20mg Tabs 10s",
+        "productcode": "FZM01",
+        "unit_price": 128.33
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Tadact Range",
+        "productname": "Tadact 10mg Tabs 10s",
+        "productcode": "GCB01",
+        "unit_price": 74.94
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Terifort",
+        "productname": "Terifort Pen 750mcg",
+        "productcode": "GDT01",
+        "unit_price": 1028.57
+    },
+    {
+        "name": "ACTIVA",
+        "brand": "Terifort",
+        "productname": "Terifort 750mcg Prefilled Cartridge 750mcg",
+        "productcode": "GDX01",
+        "unit_price": 3492.49
+    }
+]

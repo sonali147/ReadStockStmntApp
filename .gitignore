@@ -1,5 +1,5 @@
 testrun/
-output/
+output/*
 venv/
 temp/
 .rpa/
@@ -13,4 +13,6 @@ temp/
 *.zip
 *.log
 *.pdf
-./templates/extractions/*
+./templates/extractions/excel/*.xlsx
+./templates/extractions/html/*.html
+./templates/extractions/resolved/*.xlsx
