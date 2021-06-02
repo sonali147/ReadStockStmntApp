@@ -66,7 +66,7 @@ def master_resolve(filename):
             #print(" -*- "*10)
         else:
             if not ask_user:
-                ask_user = [(prod, prod_orig, 100), (prod, "No Options available", 0)]
+                ask_user = [(prod, prod_orig, 100), (prod, "Delete Row", 0)]
             prod_list.append({"name":prod_orig, "options":ask_user})
             # print(prod)
             # print(prod_list)

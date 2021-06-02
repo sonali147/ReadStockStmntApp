@@ -211,22 +211,26 @@ def resolve_products():
             df = df.iloc[:-1,:]
             df[df.columns[0]].replace(to_replace=["Ipca Activa", "IPCA(ACTIVA)", "IPCA LADORATORIES LTD(ACTIVA)", "IPCA PAIN MANGEMENT",""],value=np.nan, inplace=True)
             df.dropna(axis=0, subset=[df.columns[0]], inplace=True)
-            
+
             prod_names = df.iloc[:,0]
             print("total len before resolution >> ", len(prod_names))
             final_prods = []
-            for prod in prod_names:
+            del_row = []
+            for i, prod in enumerate(prod_names):
                 for each in file_data['resolved_list']:
                     if prod == each["name"]:
                         final_prods.append(each["match"][1])
                         break
                 for idx, each in enumerate(file_data['prod_list']):
                     if prod == each['name']:
+                        if result['form-data'][str(idx)] == "Delete Row":
+                            del_row.append(i)
                         final_prods.append(result['form-data'][str(idx)])
                         break
             print("total len after resolution >> ", len(final_prods))
             if len(prod_names) == len(final_prods):
-                df.iloc[:,0] = final_prods
+                df = df.drop([df.index[e] for e in del_row])
+                df.iloc[:,0] = [prod for idx,prod in enumerate(final_prods) if idx not in del_row]
                 resolved_file_url = filepath.replace("excel","resolved") + file_data['filename'].replace(".pdf", ".html")
                 f = open(resolved_file_url,'w')
                 f.write(df.to_html())
