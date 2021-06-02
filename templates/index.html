@@ -1,0 +1,47 @@
+<html>
+    <title>Invoice Extraction</title>
+    <body>
+        <a href="/"><h2>Upload Invoice - {{session.id}}</h2></a>
+        <form action = "/api/v1/upload_file" method = "POST" enctype = "multipart/form-data">
+          Stockist Name :  <SELECT name="stockist">
+            {% for s in stockist %}
+              <OPTION value='{{s}}'>{{s}}</option>
+            {% endfor %}
+            </SELECT><br>
+        Stock Statement : <input type = "file" name = "file[]" multiple=""/><br>
+        Click to add ---> <input type = "submit" value="Submit"/>
+      </form>   
+      <div class="container" style="min-height:100% width:80%">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+            {{message}}
+            </div>
+          {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+        {% block body %}{% endblock %}
+        </div>
+        {% if filedata %}
+          <ol>
+            {% for fdt in filedata %}
+            <li>
+              {{fdt[0]}}<br>
+
+              <a href="{{fdt[1]}}" target="_blank">View File</a>
+              <a href="{{fdt[2]}}" target="_blank">Extracted File</a>
+              
+              {% if fdt[3] %}
+                <a href="{{fdt[3]}}" target="_blank">Resolved File</a>
+              {% else %}
+                <a href="/api/v1/resolve_products?filename={{fdt[0].replace('.pdf', '.xlsx')}}" target="_blank">Resolve Product Names</a>
+              {% endif %}
+            </li>    
+            {% endfor %}
+          </ol>
+        {% endif %}        
+          
+   </body>
+</html>
