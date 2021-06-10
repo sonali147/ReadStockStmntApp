@@ -30,8 +30,9 @@
             <li>
               {{fdt[0]}}<br>
 
-              <a href="{{fdt[1]}}" target="_blank">View File</a>
-              <a href="{{fdt[2]}}" target="_blank">Extracted File</a>
+              <!-- <a href="{{fdt[1]}}" target="_blank">View File</a> -->
+              <!--<a href="{{fdt[2]}}" target="_blank">Extracted File</a>-->
+              <a href="/extractions/{{fdt[0]}}" target="_blank">Extracted File</a>
               
               {% if fdt[3] %}
                 <a href="{{fdt[3]}}" target="_blank">Resolved File</a>

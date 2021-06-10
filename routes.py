@@ -42,11 +42,23 @@ def home():
 
 @app.route('/extractions/<filename>', methods=['GET'])
 def show_data(filename):
+    #return render_template("extractions/html/"+filename)
+    return render_template("extract.html", filename=filename)
+
+
+@app.route('/extracted/<filename>', methods=['GET'])
+def see_data(filename):
     return render_template("extractions/html/"+filename)
 
 
 @app.route('/resolutions/<filename>', methods=['GET'])
 def show_data_resolved(filename):
+    #return render_template("extractions/resolved/"+filename)
+    return render_template("extracted_vs_resolved.html", filename=filename)
+
+
+@app.route('/resolved/<filename>', methods=['GET'])
+def see_data_resolved(filename):
     return render_template("extractions/resolved/"+filename)
 
 
