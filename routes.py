@@ -62,6 +62,12 @@ def see_data_resolved(filename):
     return render_template("extractions/resolved/"+filename)
 
 
+@app.route('/download/<filename>', methods=['GET'])
+def download(filename):
+    print("DOWNLOAD >>>> ", filename)
+    return send_from_directory('./templates/extractions/resolved', filename.replace(".html", ".xlsx"))
+
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
@@ -248,7 +254,7 @@ def resolve_products():
                 f.write(df.to_html())
                 f.close()
                 resolved_file_url = resolved_file_url.replace(".html", ".xlsx")
-                df.to_excel(resolved_file_url)
+                df.to_excel(resolved_file_url, index=False)
                 filedata.append([file_data["filename"], file_data["view_file_url"], file_data["extract_file_url"], "/resolutions/"+urllib.parse.quote(file_data['filename'].replace(".pdf", ".html"))])
                 flash("Product names resolved successfully - " + "./templates/extractions/resolved/" + file_data['filename'])
             else:
