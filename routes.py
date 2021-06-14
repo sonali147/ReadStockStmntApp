@@ -237,24 +237,34 @@ def resolve_products():
             print("total len before resolution >> ", len(prod_names))
             final_prods = []
             del_row = []
+            cross_check_col = []
             for i, prod in enumerate(prod_names):
                 for each in file_data['resolved_list']:
                     if prod == each["name"]:
                         final_prods.append(each["match"][1])
+                        cross_check_col.append(False)
                         break
                 for idx, each in enumerate(file_data['prod_list']):
                     if prod == each['name']:
                         if result['form-data'][str(idx)] == "Delete Row":
                             del_row.append(i)
+                        cross_check_col.append(True)
                         final_prods.append(result['form-data'][str(idx)])
                         break
             print("total len after resolution >> ", len(final_prods))
             if len(prod_names) == len(final_prods):
+                df["Resolved"] = cross_check_col
+                
                 df = df.drop([df.index[e] for e in del_row])
                 df.iloc[:,0] = [prod for idx,prod in enumerate(final_prods) if idx not in del_row]
                 resolved_file_url = filepath.replace("excel","resolved") + file_data['filename'].replace(".pdf", ".html")
+                def color_cell(cell):
+                    return 'color: ' + ('green' if cell else 'red')
+
+                html = df.style.applymap(color_cell, subset=['Resolved']).render()
                 f = open(resolved_file_url,'w')
-                f.write(df.to_html())
+                #f.write(df.to_html())
+                f.write(html)
                 f.close()
                 resolved_file_url = resolved_file_url.replace(".html", ".xlsx")
                 df.to_excel(resolved_file_url, index=False)
