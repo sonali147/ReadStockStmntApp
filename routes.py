@@ -5,6 +5,7 @@ import camelot
 import pickle
 import datefinder
 import pdftotree
+import pdfplumber
 import numpy as np
 import pandas as pd
 import flask
@@ -78,8 +79,6 @@ def extract_invoice():
     try:
         filedata = []
         filenames = []
-        fileUploadLink = []
-        fileExtractLink = []
         if request.method == 'POST':
             stockist = request.form.get("stockist")
             st_date = "undefined"
@@ -159,10 +158,14 @@ def extract_invoice_data():
 def extract_data(filename):
     filepath = "./uploads/"+filename
 
+    pdf = pdfplumber.open(filepath)
+    lines = pdf.pages[0].extract_text().split("\n")
     tables = camelot.read_pdf(filepath, flavor='stream', pages='1-end')
     if "anupama" in filename.lower():
+        lines = lines[:9]
         table_df = tables[1].df
     else:
+        lines = lines[:7]
         table_df = tables[0].df
     
     #dump dataframe in html
@@ -171,7 +174,7 @@ def extract_data(filename):
     os.makedirs("."+html_filepath, exist_ok=True)
     fname = filename.replace(".pdf",".html")
     with open("."+html_filepath+fname, "w") as f:
-        table_html = "<title>"+fname+"</title>" + "<h3>"+fname+"</h3><br>" + table_html
+        table_html = "<title>"+fname+"</title>" + "<br>".join(lines) + "<br><br>" +  table_html
         f.write(table_html)
 
     table_df = table_df.rename(columns=table_df.iloc[0]).drop(table_df.index[0])
