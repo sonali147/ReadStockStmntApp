@@ -31,7 +31,19 @@ PREFIX = "/api/v1"
 redis_db = Redis(host='localhost', port=6379, db=1)
 
 #to be read from a file provided by customer
-stockist_list = ["PAVAN MEDICAL DISTRIBUTORS", "POORNIMA MEDICAL AGENCIES", "ANUPAMA MEDICAL SYNDICATE"]
+stockist_list = json.load(open("./resources/stockist_list.json", "r"))
+table_params = json.load(open("./resources/table_parameters.json", "r"))
+
+#shift to utilities if transformations increase
+def replace_each(row):
+    for i,r in enumerate(row):
+        row[i] = r.replace("\n", "")
+    return row
+
+transform_map = {
+    "Replace" : replace_each
+}
+
 sessId = uuid.uuid4().hex
 
 
@@ -87,7 +99,7 @@ def extract_invoice():
                 if f.filename == "":
                     flash("No file chosen >> filename empty")
                     return redirect(url_for("home", stockist=stockist_list))
-                filename = secure_filename(f.filename)
+                filename = secure_filename(f.filename.lower())
                 filename = stockist + "***" + st_date + "***" + filename
                 f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 filepath = extract_data(filename)
@@ -156,17 +168,32 @@ def extract_invoice_data():
 
 
 def extract_data(filename):
+    stockist = filename.split("***")[0]
     filepath = "./uploads/"+filename
-
+    #import pdb;pdb.set_trace()
     pdf = pdfplumber.open(filepath)
     lines = pdf.pages[0].extract_text().split("\n")
-    tables = camelot.read_pdf(filepath, flavor='stream', pages='1-end')
-    if "anupama" in filename.lower():
-        lines = lines[:9]
-        table_df = tables[1].df
-    else:
-        lines = lines[:7]
-        table_df = tables[0].df
+
+    if stockist in table_params:
+        table_index = table_params[stockist].get("table_index", 0)
+        line_index = table_params[stockist].get("lines", 7)
+        table_areas = table_params[stockist].get("table_areas", None)
+        columns = table_params[stockist].get("columns", None)
+        headers = table_params[stockist].get("headers", None)
+        transformations = table_params[stockist].get("transformations", None)
+        if table_areas and columns:
+            tables = camelot.read_pdf(filepath, flavor='stream', table_areas=[table_areas], columns=[columns])
+        else:
+            tables = camelot.read_pdf(filepath, flavor='stream', pages='1-end')
+        lines = lines[:line_index]
+        table_df = tables[table_index].df
+        if transformations:
+            for each in transformations:
+                table_df = table_df.apply(lambda x:transform_map[each](x))
+        if headers:
+            table_df.columns = headers
+        else:
+            table_df = table_df.rename(columns=table_df.iloc[0]).drop(table_df.index[0])
     
     #dump dataframe in html
     table_html = table_df.to_html()
@@ -177,7 +204,7 @@ def extract_data(filename):
         table_html = "<title>"+fname+"</title>" + "<br>".join(lines) + "<br><br>" +  table_html
         f.write(table_html)
 
-    table_df = table_df.rename(columns=table_df.iloc[0]).drop(table_df.index[0])
+    #table_df = table_df.rename(columns=table_df.iloc[0]).drop(table_df.index[0])
 
     #dump dataframe in excel
     excel_filepath = "/templates/extractions/excel/"
@@ -227,10 +254,9 @@ def resolve_products():
             filepath = "./templates/extractions/excel/"
             file_data = json.loads(redis_db.get(result['session_id']))
             filenames = [file_data["filename"]]
-
             df = pd.read_excel(filepath+file_data['filename'].replace(".pdf", ".xlsx"))
             df = df.iloc[:-1,:]
-            df[df.columns[0]].replace(to_replace=["Ipca Activa", "IPCA(ACTIVA)", "IPCA LADORATORIES LTD(ACTIVA)", "IPCA PAIN MANGEMENT",""],value=np.nan, inplace=True)
+            df[df.columns[0]].replace(to_replace=["Ipca Activa", "IPCA(ACTIVA)", "IPCA LADORATORIES LTD(ACTIVA)", "IPCA PAIN MANGEMENT", "IPCA LABS LTD (ACTIVA) ", ""],value=np.nan, inplace=True)
             df.dropna(axis=0, subset=[df.columns[0]], inplace=True)
 
             prod_names = df.iloc[:,0]
@@ -284,6 +310,7 @@ def resolve_products():
             
 
     return True
+
 
 if __name__=="__main__":
     # dir = "./templates/extractions/excel"

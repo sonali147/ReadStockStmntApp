@@ -1,0 +1,19 @@
+{
+    "PAVAN MEDICAL DISTRIBUTORS" : {
+    },
+    "POORNIMA MEDICAL AGENCIES" : {
+    },
+    "ANUPAMA MEDICAL SYNDICATE" : {
+        "table_index" : 1,
+        "lines" : 9
+    },
+    "SRI SRINIVASA ENTERPRISES" : {
+    },
+    "SRI DEVI PHARMACEUTICALS" : {
+        "table_areas" : "1.4,760,434.5,530.2",
+        "columns" : "125,180,230,270,310,360,405",
+        "headers" : ["Product Name", "Pack", "O.St", "Pur", "Sale", "Qoh", "Value", "Age"],
+        "lines" : 5,
+        "transformations" : ["Replace"]
+    }
+}
