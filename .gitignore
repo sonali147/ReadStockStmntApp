@@ -13,4 +13,4 @@ temp/
 *.zip
 *.log
 *.pdf
-./templates/extractions/*
+./templates/extractions/**
