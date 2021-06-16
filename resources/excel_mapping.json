@@ -1,0 +1,205 @@
+{
+    "ADITYA PHARMACEUTICALS" : {
+        "offset" : "2"
+    },
+    "ARIHANT MEDICALS" : {
+        "break" : "OPENING"
+    },
+    "COMPETENT PHARMA PVT.LTD." : {
+        "headers"  : ["ITEM","PACK","OPENING","PURCHASE","S.RETURN","OTHERS","SUB TOTAL","SALE","P.RETURN","OTHERS","CLOSING"],
+        "offset" : "0",
+        "break" : "Total Value"
+    },
+    "GANDHI MEDICAL AGENCIES" : {
+        "break" : "SUBTOTAL FOR IPCA"
+    },
+    "GULMAHOR MEDICAL AGENCIES" : {
+        "break" : "SUBTOTAL FOR IPCA"
+    },
+    "GURUKRUPA MEDICAL AGENCIES" : {
+        "break" : "SUBTOTAL FOR IPCA"
+    },
+    "MEDILINKS" : {
+        "break" : "TOTAL"
+    },
+    "NIMISHA ASSOCIATES" : {
+        "break" : "TOTAL"
+    },
+    "PADMASHREE ENTERPRISES" : {
+        "break" : "TOTAL"
+    },
+    "DECCAN MEDISALES PVT LTD" : {
+        "break" : "Quantity",
+        "headers": ["ITEM DESCRIPTION", "OPENING STOCK", "PURCHASES", "SALES RETURN", "REPL./ OTHERS", "TOTAL STOCK","SALES", "PURCHASE RETURN", "REPL./ OTHERS", "CLOSING STOCK", "RATE"],
+        "offset": "4"
+    },
+    "MAYUR AGENCIES" : {
+        "break" : "TOTAL QUANTITY"
+    },
+    "SUNNY CO": {
+        "break": "Total Value",
+        "headers": ["ITEM", "PACK", "OPENING", "PURCHASE", "S.RETURN", "OTHERS", "SUB TOTAL", "SALE", "P.RETURN","OTHERS", "CLOSING"],
+        "offset": "0"
+    },
+    "CANNY CO PVT.LTD.": {
+        "break": "TOTAL VALUE",
+        "offset": "2"
+    },
+    "D.R.DISTRIBUTORS PVT.LTD.": {
+        "break": "Total Value",
+        "offset": "2"
+    },
+    "JOHAR BROTHERS": {
+        "break": "TOTAL VALUE",
+        "offset": "2"
+    },
+    "LUCKY PHARMACEUTICALS PVT. LTD.": {
+        "discard_list": ["division :","total value"]
+    },
+    "GOLDI & VIPUL MEDICARE PVT LTD": {
+        "discard_list": ["division :","total value"]
+    },
+    "LIFELINE PHARMACEUTICAL PVT. LTD.": {
+        "discard_list": ["division :","total value"]
+    },
+    "MANGAL DISTRIBUTORS" : {
+        "break" : "TOTAL"
+    },
+    "MANOJ DISTRIBUTORS" : {
+        "break" : "TOTAL"
+    },
+    "NANDISH MEDICALS" : {
+        "break" : "TOTAL"
+    },
+    "SHREE KRISHNA PHARMACEUTICAL" : {
+        "headers":["ITEM", "OPENING QTY.", "VALUE", "RECEIPT QTY.", "VALUE", "ISSUE QTY.", "VALUE", "CLOSING QTY.", "VALUE", "DUMP QTY M.EXP."],
+        "offset": "2",
+        "discard_list": ["ipca ", " total", "----", "our gst"]
+    },
+    "NARULA CHEMISTS (AGENCIES)": {
+        "discard_list": ["division :","total value"]
+    },
+    "NEOCHEM AGENCIES": {
+        "discard_list": ["total", "our gst"]
+    },
+    "PARAMOUNT MEDICAL AGENCIES" : {
+        "headers":["SNO", "ITEM", "PACKING", "OP STOCK","PURCHASE","SALE","CLOSING STK"],
+        "offset": "2"
+    },
+    "PERFECT MEDICAL AGENCY" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE","S.RETURN","OTHERS", "SUB TOTAL", "SALE", "P.RETURN", "OTHERS", "CLOSING"],
+        "discard_list": ["division :", "total value"],
+        "offset": "0"
+    },
+    "PHARMA DISTRIBUTORS": {
+        "break": "TOTAL"
+    },
+    "PRAKASHCHANDRA MEDICAL STORE" : {
+        "headers":["ITEM", "UNIT", "OPENING QTY","PURCHASE QTY", "SALES QTY","SALES VALUE", "CLOSING QTY", "CLOSINGBAL"],
+        "offset": "2",
+        "discard_list": ["ipca ", "grouptotal", "grandtotal"]
+    },
+    "RAJESH TRADERS" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE", "SALE","CLOSING", "REORDER - QTY."],
+        "offset": "2",
+        "discard_list": ["company :", "total value"]
+    },
+    "RENUKA PHARMA": {
+        "break": "TOTAL"
+    },
+    "SAI NATH AGENCIES" : {
+        "headers":["ITEM", "OPENING QTY.","VALUE", "RECEIPT QTY.","VALUE", "ISSUE QTY.", "VALUE", "CLOSING QTY.","VALUE", "DUMP QTY."],
+        "discard_list": ["ipca ", " total", "our gst"]
+    },
+    "SANJIVAN UNIVERSAL PHARMACEUTICALS" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE","S.RETURN","OTHERS", "SUB TOTAL", "SALE", "P.RETURN", "OTHERS", "CLOSING"],
+        "discard_list": ["division :", "total value"],
+        "offset": "0"
+    },
+    "SHARMA AMBALA" : {
+        "headers":["SNO.", "ITEM", "OP. STOCK","OP. VALUE", "PURCHASE VALUE","PUR FREE VALUE", "PUR FREE QTY", "PURCHASE", "SALE QTY","SALE FREE QTY", "SALE VALUE", "SALE FREE VALUE", "CLOSING STOCK", "CLOSING VALUE", "SALE VALUE ON PUR RATE WITHOUT TAX", "% STOCK", "AVG STK"],
+        "offset": "2"
+    },
+    "SHREE NATH DISTRIBUTORS": {
+        "break": "OPENING :"
+    },
+    "VIKAS ENTERPRISES" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE","S.RETURN","OTHERS", "SUB TOTAL", "SALE", "P.RETURN", "OTHERS", "CLOSING", "BARCODE"],
+        "discard_list": ["company :", "total value"],
+        "offset": "0"
+    },
+    "VIMAL PHARMA": {
+        "break": "TOTAL QUANTITY"
+    },
+    "VINAYAK ENTERPRISES" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE","TOTAL", "SALE", "CHALLAN QTY", "CLOSING","OPENING VALUE","PUR VALUE", "SALE VALUE",  "CLOSING VALUE"],
+        "discard_list": ["company :", "total value"],
+        "offset": "1"
+    },
+    "SONDHI MEDICOS" : {
+        "headers":["ITEM", "OTY.", "SALE VALUE", "QTY.", "CLOSING VALUE"],
+        "discard_list": ["ipca lab", " total", "total","------", "our gst billing"],
+        "offset": "1"
+    },
+    "ISHWAR PHARMACEUTICALS" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE", "FREE", "P.RETURN","FREE", "SALE", "FREE", "S.RETURN", "FREE", "OTHERS", "CLOSING"],
+        "discard_list": ["company :", "total value"],
+        "offset": "1"
+    },
+    "AVADH MEDICAL AGENCIES" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE", "FREE", "P.RETURN","FREE", "SALE", "FREE", "S.RETURN", "FREE", "OTHERS", "CLOSING"],
+        "discard_list": ["division :", "total value"],
+        "offset": "1"
+    },
+    "ROSHAN ENTERPRISES" : {
+        "headers":["ITEM", "PACK", "OPENING","PURCHASE","S.RETURN","OTHERS", "SUB TOTAL", "SALE", "P.RETURN", "OTHERS", "CLOSING"],
+        "discard_list": ["division :", "total value"],
+        "offset": "0"
+    },
+    "NAHAR MEDITRADE": {
+        "break": "Our GST"
+    },
+    "CHANDULAL DHARAMCHAND AGRAWAL": {
+        "break": "Our GST"
+    },
+    "MUKUND & COMPANY": {
+        "break": "Our GST"
+    },
+    "PRATAP MEDICAL STORES": {
+        "break": "Our GST"
+    },
+    "SUGANCHAND MEDICAL STORES(A.D)": {
+        "break": "Our GST"
+    },
+    "SUNNY SONS": {
+        "break": "Our GST"
+    },
+    "AGARWAL PHARMA": {
+        "break": "Our GST"
+    },
+    "GANESH MEDICOS": {
+        "break": "Our GST"
+    },
+    "VEENAGS HEALTHCARE PRIVATE LIMITED": {
+        "break": "Our GST"
+    },
+    "VIKAS MEDICAL STORES GONDIA" : {
+        "headers":["ITEM", "column_", "column_", "RATE", "OPENING STOCK","PURCHASE QTY","SALES RETURN","LMS QTY", "PURC. RETURN", "SALES QTY", "CLOSING QTY", "ORDER QTY", "ORDER VALUE"],
+        "discard_list": ["ipca laboratories", "near expiry", "product details"],
+        "offset": "7",
+        "break": "Items"
+    },
+    "SIND MEDICAL AGENCIES" : {
+        "headers":["ITEM", "column_", "column_", "RATE", "OPENING STOCK","PURCHASE QTY","SALES RETURN","LMS QTY", "PURC. RETURN", "SALES QTY", "CLOSING QTY"],
+        "discard_list": ["ipca laboratories", "near expiry", "product details"],
+        "offset": "5",
+        "break": "Items"
+    },
+    "VASU AGENCIES HYD PRIVATE LIMITED" : {
+
+    },
+    "SRIKAAR PHARMACY" : {
+        "break": "Summary :",
+        "drop_cols" : [0]
+    }
+}

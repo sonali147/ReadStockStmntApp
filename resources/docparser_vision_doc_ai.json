@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "docparser-pewl",
+  "private_key_id": "7837566694e73fc82bdd406b165495af1ee5d9d1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDsevojSZbwmFJm\ndzggZO9CYS5baCyItmif0iH0EA+GPT0ghYqJknRrd3TP6VADoA/vCBWsjtBm+SLD\nJRHDZUh22I4s+GJonyks56Bu5RVKajd0QZubpByo5bpRbibvwdona3OJBzgMLC/J\nkEpnU9a1WBOGCgrvq8A1cAkf5RKpxprEm4G2j+CJCf9BqGvMHH6mV2c12fCo6deB\n3qDRJev0tRRGp0/ZC6p32KdCgHQfFWOgG4U3cI64v7Ew4Xm2PEnRYST0FSK4qmLu\ntYCZV1nVaRKSppGmrSNeYgwPk8raea8iUmRqpygITvL+x4SbWJJUSh4iqUo8AS2m\nstdzjfw9AgMBAAECggEAFSEs2fvQjolRrYGgBHb4UNpNkdHGTuXbhdI5Ae1wcapl\nnJMKDJ5HJDYNfClI4rYJzm4Ov7cYBGdk1YJpqqeRWLsjQv3jjx0PiQleMqJp61b/\nwvW8wWShwe6a3f1FYd1UkHqfnWIFfkLxdyVbHI3nbJck0XByxzT1rOColA68AurF\ntyoTcU2hbgvzy6D2b8yO0gyTkClmNg3fkj6vzb9iCX0/NiS/zZBaLLOdOqDUJ5Rr\nwYw5gZu3IjcOAgg/RsL7u6rpI9DjR13dqpT6CZdnfAbSP+BzB079Mw+VQrq6plCz\nXyNH498KWfKMVYQXq1ADoNH1LOYuJJmFWXWgp90pUQKBgQD/1vCoJ4EXArDdeltw\nBCFC3kk8j4hRPNuYFxz6wNaAEMGlUXIi8IL6R4DhDWJck6IyvHKjgWQgVcyXvRPV\ndfYlM+UHA/El6f1H2URSY/1notZ+Z22URcNnormbl8Dj6jy725cDXlnq84roqiRB\nns9odicrFbc5BHpxvqNOVGzSbQKBgQDsoO4YDDJO/4ckDF0JNoLMAzAkK0boEnEL\nVUeel0I3mUTFuzqTr5iDub72RoPBjlUACT8xFoNPmfL9xnZbS/fSrnwXssgT7EF+\nQnndOrLJwDGUNv7v0JbShMpy1kbCY3Ok18UM6BtCb+OJn3PwqMO/dILByXZxUWwA\nut5WVTovEQKBgHJoMQhRWiXrGyJ/xAIMpr8bXk7JtOD3QQ/7TgdIUuPEGoSOLmc3\nfKrlbNm3PYQ+tOrRYMaDZz4agDpe4E61yJQMZ9/CQIV+5LfLjgT2F+zPYfH22IbU\nx7RBjZTpwOVq6yvq39YuzDEIJdcztrDtjrydEZjvxhamTQcuhCLUGDHlAoGAHZbG\nDwW/aLd1K6HMJHHHi0E+zNcIh85+ij9AtGkPo6oruln+KieD97zLTzpkEVj98gI1\n/6pkAxkqFGeztxjZxWOCKuh1MmCRk/s2B97mKmo5COKToGNB6NMoCZIXyQjslglR\nH5sKhZU+K6BfvBEuYQttqlPJ1sOqsLCtSrhfjTECgYEA4sMxTC52sAGOOsHr5ddg\nI9Sn06l6XCy3WCI7DrYkDR9QNslJ0FLu3JUZtWtJVdLmjjsAafXN98WBNIYaMm3l\ny0vyXC+CjvkMS0hKcFy4ZkFTjRlU2V8OzmLQ7Z3QbCPpnhaiCPvnD1z2kIQuV+9s\nOp8+buiQF0DrmchMlZTdzMc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vision-document-ai@docparser-pewl.iam.gserviceaccount.com",
+  "client_id": "116342897276372901688",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vision-document-ai%40docparser-pewl.iam.gserviceaccount.com"
+}

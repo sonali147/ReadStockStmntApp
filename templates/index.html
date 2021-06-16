@@ -37,7 +37,7 @@
               {% if fdt[3] %}
                 <a href="{{fdt[3]}}" target="_blank">Resolved File</a>
               {% else %}
-                <a href="/api/v1/resolve_products?filename={{fdt[0].replace('.pdf', '.xlsx')}}" target="_blank">Resolve Product Names</a>
+                <a href="/api/v1/resolve_products?filename={{fdt[0].replace('.'+fdt[0].split('.')[-1], '.xlsx')}}" target="_blank">Resolve Product Names</a>
               {% endif %}
             </li>    
             {% endfor %}

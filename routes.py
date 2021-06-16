@@ -1,3 +1,4 @@
+from chat_worker_doc_parser import chatworker
 import os
 import json
 import uuid
@@ -56,8 +57,8 @@ def home():
 
 @app.route('/extractions/<filename>', methods=['GET'])
 def show_data(filename):
-    #return render_template("extractions/html/"+filename)
-    return render_template("extract.html", filename=filename)
+    file_type = "." + filename.split(".")[-1]
+    return render_template("extract.html", filename=filename, file_type=file_type)
 
 
 @app.route('/extracted/<filename>', methods=['GET'])
@@ -84,6 +85,9 @@ def download(filename):
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
+    file_type = "." + filename.split(".")[-1]
+    if file_type in [".xls", ".xlsx", ".csv"]:
+        filename = filename.replace(file_type, ".html")
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
@@ -102,12 +106,21 @@ def extract_invoice():
                     return redirect(url_for("home", stockist=stockist_list))
                 filename = secure_filename(f.filename.lower())
                 filename = stockist + "***" + st_date + "***" + filename
-                f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                filepath = extract_data(filename)
+                f_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                f.save(f_path)
+                file_type = "." + filename.split(".")[-1]
+                if file_type in [".xls", ".xlsx"]:
+                    df = pd.read_excel(f_path)
+                    df.to_html(f_path.replace(file_type, ".html"))
+                elif file_type == ".csv":
+                    df = pd.read_csv(f_path)
+                    df.to_html(f_path.replace(file_type, ".html"))
+                filepath = extract_data(filename, file_type)
                 view_file_url = url_for('uploaded_file',filename=filename)
                 extract_file_url = "/extractions/" + urllib.parse.quote(filepath)
                 redis_db.setex(session['id'], 3600, json.dumps({"session_id":session['id'], 
                                                                 "filename":filename,
+                                                                "file_type":file_type,
                                                                 "view_file_url":view_file_url,
                                                                 "extract_file_url":extract_file_url}))
                 filedata.append([filename, view_file_url, extract_file_url])
@@ -168,42 +181,45 @@ def extract_invoice_data():
     return table_html
 
 
-def extract_data(filename):
+def extract_data(filename, file_type):
     stockist = filename.split("***")[0]
     filepath = "./uploads/"+filename
     #import pdb;pdb.set_trace()
-    pdf = pdfplumber.open(filepath)
-    lines = pdf.pages[0].extract_text().split("\n")
-
-    if stockist in table_params:
-        table_index = table_params[stockist].get("table_index", 0)
-        line_index = table_params[stockist].get("lines", 7)
-        flavor = table_params[stockist].get("flavor", None)
-        table_areas = table_params[stockist].get("table_areas", None)
-        columns = table_params[stockist].get("columns", None)
-        headers = table_params[stockist].get("headers", None)
-        transformations = table_params[stockist].get("transformations", None)
-        if flavor:
-            tables = camelot.read_pdf(filepath, flavor=flavor, pages='1-end')
-        elif table_areas and columns:
-            tables = camelot.read_pdf(filepath, flavor='stream', table_areas=[table_areas], columns=[columns])
-        else:
-            tables = camelot.read_pdf(filepath, flavor='stream', pages='1-end')
-        lines = lines[:line_index]
-        table_df = tables[table_index].df
-        if transformations:
-            for each in transformations:
-                table_df = table_df.apply(lambda x:transform_map[each](x))
-        if headers:
-            table_df.columns = headers
-        else:
-            table_df = table_df.rename(columns=table_df.iloc[0]).drop(table_df.index[0])
+    lines = []
+    if file_type in [".xls", ".xlsx", ".csv"]:
+        table_df = chatworker().excel_extractor(filepath, file_type, {"stockist" : stockist})
+    else:
+        pdf = pdfplumber.open(filepath)
+        lines = pdf.pages[0].extract_text().split("\n")
+        if stockist in table_params:
+            table_index = table_params[stockist].get("table_index", 0)
+            line_index = table_params[stockist].get("lines", 7)
+            flavor = table_params[stockist].get("flavor", None)
+            table_areas = table_params[stockist].get("table_areas", None)
+            columns = table_params[stockist].get("columns", None)
+            headers = table_params[stockist].get("headers", None)
+            transformations = table_params[stockist].get("transformations", None)
+            if flavor:
+                tables = camelot.read_pdf(filepath, flavor=flavor, pages='1-end')
+            elif table_areas and columns:
+                tables = camelot.read_pdf(filepath, flavor='stream', table_areas=[table_areas], columns=[columns])
+            else:
+                tables = camelot.read_pdf(filepath, flavor='stream', pages='1-end')
+            lines = lines[:line_index]
+            table_df = tables[table_index].df
+            if transformations:
+                for each in transformations:
+                    table_df = table_df.apply(lambda x:transform_map[each](x))
+            if headers:
+                table_df.columns = headers
+            else:
+                table_df = table_df.rename(columns=table_df.iloc[0]).drop(table_df.index[0])
     
     #dump dataframe in html
     table_html = table_df.to_html()
     html_filepath = "/templates/extractions/html/"
     os.makedirs("."+html_filepath, exist_ok=True)
-    fname = filename.replace(".pdf",".html")
+    fname = filename.replace(file_type,".html")
     with open("."+html_filepath+fname, "w") as f:
         table_html = "<title>"+fname+"</title>" + "<br>".join(lines) + "<br><br>" +  table_html
         f.write(table_html)
@@ -213,7 +229,7 @@ def extract_data(filename):
     #dump dataframe in excel
     excel_filepath = "/templates/extractions/excel/"
     os.makedirs("."+excel_filepath, exist_ok=True)
-    fname_xl = filename.replace(".pdf",".xlsx")
+    fname_xl = filename.replace(file_type,".xlsx")
     table_df.to_excel("."+excel_filepath+fname_xl, index=False)
 
     return fname
@@ -258,7 +274,7 @@ def resolve_products():
             filepath = "./templates/extractions/excel/"
             file_data = json.loads(redis_db.get(result['session_id']))
             filenames = [file_data["filename"]]
-            df = pd.read_excel(filepath+file_data['filename'].replace(".pdf", ".xlsx"))
+            df = pd.read_excel(filepath+file_data['filename'].replace(file_data['file_type'], ".xlsx"))
             df = df.iloc[:-1,:]
             df[df.columns[0]].replace(to_replace=ignore_list,value=np.nan, inplace=True)
             df.dropna(axis=0, subset=[df.columns[0]], inplace=True)
@@ -287,7 +303,7 @@ def resolve_products():
                 
                 df = df.drop([df.index[e] for e in del_row])
                 df.iloc[:,0] = [prod for idx,prod in enumerate(final_prods) if idx not in del_row]
-                resolved_file_url = filepath.replace("excel","resolved") + file_data['filename'].replace(".pdf", ".html")
+                resolved_file_url = filepath.replace("excel","resolved") + file_data['filename'].replace(file_data['file_type'], ".html")
                 def color_cell(cell):
                     return 'color: ' + ('green' if cell else 'red')
 
@@ -298,7 +314,7 @@ def resolve_products():
                 f.close()
                 resolved_file_url = resolved_file_url.replace(".html", ".xlsx")
                 df.to_excel(resolved_file_url, index=False)
-                filedata.append([file_data["filename"], file_data["view_file_url"], file_data["extract_file_url"], "/resolutions/"+urllib.parse.quote(file_data['filename'].replace(".pdf", ".html"))])
+                filedata.append([file_data["filename"], file_data["view_file_url"], file_data["extract_file_url"], "/resolutions/"+urllib.parse.quote(file_data['filename'].replace(file_data['file_type'], ".html")), file_data['file_type']])
                 flash("Product names resolved successfully - " + "./templates/extractions/resolved/" + file_data['filename'])
             else:
                 flash("Some error in resolution --- have a look !")    
