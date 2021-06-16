@@ -8,7 +8,7 @@ from fuzzywuzzy import fuzz
 
 
 master_names = json.load(open("./resources/product_master_activa.json","r"))
-
+ignore_list = json.load(open("./resources/ignore_list.json", "r"))
 
 def master_resolve(filename):
     print("master_resolve >>> ", filename)
@@ -24,7 +24,7 @@ def master_resolve(filename):
 
     df = pd.read_excel(filepath+filename)
     df = df.iloc[:-1,:]
-    df[df.columns[0]].replace(to_replace=["Ipca Activa", "IPCA(ACTIVA)", "IPCA LADORATORIES LTD(ACTIVA)", "IPCA PAIN MANGEMENT",""],value=np.nan, inplace=True)
+    df[df.columns[0]].replace(to_replace=ignore_list,value=np.nan, inplace=True)
     df.dropna(axis=0, subset=[df.columns[0]], inplace=True)
 
     prod_names = df.iloc[:,0]
@@ -36,6 +36,7 @@ def master_resolve(filename):
         prod_orig = deepcopy(prod)
         print(prod_orig)
         prod = prod.lower()
+        prod = prod.replace("(ipca)" , "")
         resolved_name = ""
         matches = []
         ask_user = []

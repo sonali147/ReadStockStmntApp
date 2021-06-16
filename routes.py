@@ -33,6 +33,7 @@ redis_db = Redis(host='localhost', port=6379, db=1)
 #to be read from a file provided by customer
 stockist_list = json.load(open("./resources/stockist_list.json", "r"))
 table_params = json.load(open("./resources/table_parameters.json", "r"))
+ignore_list = json.load(open("./resources/ignore_list.json", "r"))
 
 #shift to utilities if transformations increase
 def replace_each(row):
@@ -177,11 +178,14 @@ def extract_data(filename):
     if stockist in table_params:
         table_index = table_params[stockist].get("table_index", 0)
         line_index = table_params[stockist].get("lines", 7)
+        flavor = table_params[stockist].get("flavor", None)
         table_areas = table_params[stockist].get("table_areas", None)
         columns = table_params[stockist].get("columns", None)
         headers = table_params[stockist].get("headers", None)
         transformations = table_params[stockist].get("transformations", None)
-        if table_areas and columns:
+        if flavor:
+            tables = camelot.read_pdf(filepath, flavor=flavor, pages='1-end')
+        elif table_areas and columns:
             tables = camelot.read_pdf(filepath, flavor='stream', table_areas=[table_areas], columns=[columns])
         else:
             tables = camelot.read_pdf(filepath, flavor='stream', pages='1-end')
@@ -256,7 +260,7 @@ def resolve_products():
             filenames = [file_data["filename"]]
             df = pd.read_excel(filepath+file_data['filename'].replace(".pdf", ".xlsx"))
             df = df.iloc[:-1,:]
-            df[df.columns[0]].replace(to_replace=["Ipca Activa", "IPCA(ACTIVA)", "IPCA LADORATORIES LTD(ACTIVA)", "IPCA PAIN MANGEMENT", "IPCA LABS LTD (ACTIVA) ", ""],value=np.nan, inplace=True)
+            df[df.columns[0]].replace(to_replace=ignore_list,value=np.nan, inplace=True)
             df.dropna(axis=0, subset=[df.columns[0]], inplace=True)
 
             prod_names = df.iloc[:,0]

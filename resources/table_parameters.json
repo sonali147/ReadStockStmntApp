@@ -15,5 +15,13 @@
         "headers" : ["Product Name", "Pack", "O.St", "Pur", "Sale", "Qoh", "Value", "Age"],
         "lines" : 5,
         "transformations" : ["Replace"]
+    },
+    "SRI BABA MEDICAL DISTRIBUTORS" : {
+        "table_index" : 1,
+        "lines" : 9
+    },
+    "FOCUS MEDISALES PVT. LTD." : {
+        "lines" : 6,
+        "flavor" : "lattice"
     }
 }
