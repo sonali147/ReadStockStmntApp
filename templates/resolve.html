@@ -8,7 +8,12 @@
           {% for idx, product in product_list %}
           <p>{{idx+1}}. Choose resolved name for : {{product.name}}</p>
             {% for opt in product.options %}
-            <input type="radio" name="{{idx}}" id="{{opt[1]}}" value="{{opt[1]}}" required> {{opt[1]}} </input><br>
+              {% if opt[3] %}
+                <input type="radio" name="{{idx}}" id="{{opt[1]}}" value="{{opt[1]}}" required> {{opt[1]}}</input>
+              {% else %}
+                <input type="radio" name="{{idx}}" id="{{opt[1]}}" value="{{opt[1]}}" required disabled> {{opt[1]}}</input>
+              {% endif %}
+            <br>
             {% endfor %}
             <br>
           {% endfor %}

@@ -1,5 +1,6 @@
 import json
 import os
+import regex as re
 import camelot
 import pandas as pd
 import numpy as np
@@ -30,6 +31,7 @@ def master_resolve(filename):
     prod_names = df.iloc[:,0]
     prod_list = []
     resolved_list = []
+    already_resolved = []
     count = 0
     print("Total products ::: ", len(prod_names))
     for prod in prod_names:
@@ -37,6 +39,7 @@ def master_resolve(filename):
         print(prod_orig)
         prod = prod.lower()
         prod = prod.replace("(ipca)" , "")
+        prod = re.sub(r'tab(lets)?$', 'tabs', prod)
         resolved_name = ""
         matches = []
         ask_user = []
@@ -56,10 +59,15 @@ def master_resolve(filename):
                 if ratio > 75:
                     matches.append((prod, productname_orig, ratio))
                 else:
-                    ask_user.append((prod, productname_orig, ratio))
+                    if productname_orig not in already_resolved:
+                        if "PAVAN MEDICAL DISTRIBUTORS" in filename and productname_orig in ["Etova MR 400/4mg Tabs 10s","HCQS 200mg Tabs 15s"]:
+                            ask_user.append((prod, productname_orig, ratio, False))
+                        else:
+                            ask_user.append((prod, productname_orig, ratio, True))
         if matches:
             resolved_name = sorted(matches, key=lambda x:x[2], reverse=True)[0]
-            resolved_list.append({"name":prod_orig, "match":resolved_name})
+            resolved_list.append({"name":prod_orig, "match":resolved_name}) 
+            already_resolved.append(resolved_name[1])
             count+=1
             #print(prod)
             #print(matches)
@@ -67,7 +75,7 @@ def master_resolve(filename):
             #print(" -*- "*10)
         else:
             if not ask_user:
-                ask_user = [(prod, prod_orig, 100), (prod, "Delete Row", 0)]
+                ask_user = [(prod, prod_orig, 100, True), (prod, "Delete Row", 0, True)]
             prod_list.append({"name":prod_orig, "options":ask_user})
             # print(prod)
             # print(prod_list)

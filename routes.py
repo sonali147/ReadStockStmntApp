@@ -288,13 +288,13 @@ def resolve_products():
                 for each in file_data['resolved_list']:
                     if prod == each["name"]:
                         final_prods.append(each["match"][1])
-                        cross_check_col.append(False)
+                        cross_check_col.append("No Change")
                         break
                 for idx, each in enumerate(file_data['prod_list']):
                     if prod == each['name']:
                         if result['form-data'][str(idx)] == "Delete Row":
                             del_row.append(i)
-                        cross_check_col.append(True)
+                        cross_check_col.append("Modified")
                         final_prods.append(result['form-data'][str(idx)])
                         break
             print("total len after resolution >> ", len(final_prods))
@@ -305,7 +305,7 @@ def resolve_products():
                 df.iloc[:,0] = [prod for idx,prod in enumerate(final_prods) if idx not in del_row]
                 resolved_file_url = filepath.replace("excel","resolved") + file_data['filename'].replace(file_data['file_type'], ".html")
                 def color_cell(cell):
-                    return 'color: ' + ('green' if cell else 'red')
+                    return 'color: ' + ('green' if cell=="Modified" else 'red')
 
                 html = df.style.applymap(color_cell, subset=['Resolved']).render()
                 f = open(resolved_file_url,'w')
